@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>URL Shortener</title>
+    <title>Shortenio</title>
 </head>
-<body>
 
+<body>
     <div class="container">
-        <h1>URL Shortener</h1>
+        <h1>Shortenio</h1>
         <form action="/shortUrls" method="POST" class="my-4 form-inline">
-            <label for="fullUrl" class="sr-only">URL</label>
-            <input placeholder="Url" required type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
-            <button class="btn btn-success" type="submit">Shorten</button>
+            <label for="fullUrl" class="sr-only mb-4">Paste the URL you want to shorten below</label>
+            <input placeholder="Url" required type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2 mb-4">
+            <button class="btn btn-success mb-5" type="submit">Shorten</button>
         </form>
     
         <table class="table table-striped table-responsive">
@@ -26,14 +26,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="https://github.com/doyedele1">https://github.com/doyedele</a></td>
-                    <td><a href="/123456">123456</a></td>
-                    <td>10</td>
-                </tr>
+                <% shortUrls.forEach(shortUrl => { %>
+                    <tr>
+                        <td><a href="<%= shortUrl.full %>" target="_blank"><%= shortUrl.full %></a></td>
+                        <td><a href="<%= shortUrl.short %>" target="_blank"><%= shortUrl.short %></a></td>
+                        <td><%= shortUrl.clicks %></td>
+                    </tr>
+                <% }) %>
             </tbody>
         </table>
     </div>
-
 </body>
+
 </html>
